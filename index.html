@@ -12,7 +12,6 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- FontAwesome -->
@@ -34,18 +33,16 @@
                             subtle: '#8C7A6B'
                         }
                     },
-
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         serif: ['"Playfair Display"', 'serif']
                     }
                 }
             }
-        }
+        };
     </script>
 
     <style>
-
         body {
             background-color: #FDFBF7;
             color: #1C100B;
@@ -53,22 +50,15 @@
             overflow-x: hidden;
         }
 
-        /* ================================
-           HERO SLIDER
-        ================================= */
-
         .hero-slide {
             opacity: 0;
             transform: scale(0.95) translateY(10px);
             transition:
                 opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
                 transform 1000ms cubic-bezier(0.4, 0, 0.2, 1);
-
             position: absolute;
             inset: 0;
-
             pointer-events: none;
-
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,43 +70,18 @@
             pointer-events: auto;
         }
 
-        /* ================================
-           FLOATING FOOD DECORATION
-        ================================= */
-
         @keyframes floatSlow {
-
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-12px) rotate(6deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(6deg); }
         }
 
         @keyframes floatReverse {
-
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(10px) rotate(-8deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(10px) rotate(-8deg); }
         }
 
-        .animate-float-slow {
-            animation: floatSlow 6s ease-in-out infinite;
-        }
-
-        .animate-float-reverse {
-            animation: floatReverse 7s ease-in-out infinite;
-        }
-
-        /* ================================
-           FOOD GLOW
-        ================================= */
+        .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
 
         .food-glow {
             background:
@@ -128,33 +93,14 @@
                 );
         }
 
-        /* ================================
-           SCROLLBAR
-        ================================= */
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #FDFBF7;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #E65100;
-            border-radius: 4px;
-        }
-
-        /* ================================
-           SCROLL REVEAL
-        ================================= */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #E65100; border-radius: 4px; }
 
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .reveal.visible {
@@ -162,2825 +108,816 @@
             transform: translateY(0);
         }
 
-        /* ================================
-           MODAL ANIMATION
-        ================================= */
-
         @keyframes fadeIn {
-
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .animate-fadeIn {
-            animation: fadeIn 0.25s ease-out;
-        }
-
+        .animate-fadeIn { animation: fadeIn 0.25s ease-out; }
     </style>
 </head>
 
-
 <body class="antialiased text-brand-dark selection:bg-brand-orange selection:text-white">
 
-
     <!-- =========================================================
-         IMAGE SYSTEM
-         
-         IMPORTANT:
-         Upload your images into the "images" folder on GitHub.
+         GITHUB IMAGE SETUP
+         ---------------------------------------------------------
+         Keep index.html and the 4 images in the SAME folder.
 
-         Example:
+         Required files:
+         242833.jpg  = Logo
+         242834.jpg  = Jollof Rice
+         242835.jpg  = Fried Rice
+         242836.png  = Fried Chicken
 
-         images/
-         ├── logo.jpg
-         ├── jollof.jpg
-         ├── fried-rice.jpg
-         └── chicken.jpg
+         Example GitHub repository:
+         Foodexample-/
+         ├── index.html
+         ├── 242833.jpg
+         ├── 242834.jpg
+         ├── 242835.jpg
+         └── 242836.png
 
-         Then only change the filenames below.
-    ========================================================== -->
-
-    <script>
-
-        const IMAGES = {
-
-            /*
-             * YOUR GITHUB IMAGE SETTINGS
-             *
-             * If your website and images are inside the SAME
-             * GitHub repository, leave these as:
-             *
-             * images/filename.jpg
-             *
-             * Example:
-             * logo: "images/logo.jpg"
-             */
-
-            logo: "images/logo.jpg",
-
-            jollof: "images/jollof.jpg",
-
-            friedRice: "images/fried-rice.jpg",
-
-            chicken: "images/chicken.jpg"
-
-        };
-
-    </script>
-
-
-    <!-- =========================================================
-         HEADER
+         You do NOT need an images folder.
     ========================================================== -->
 
     <header
         id="main-header"
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-warmBg/90 backdrop-blur-md border-b border-stone-200/60"
     >
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
             <div class="flex items-center justify-between h-20">
-
-                <!-- LOGO -->
-
-                <a
-                    href="#home"
-                    class="flex items-center gap-3 group"
-                >
-
+                <a href="#home" class="flex items-center gap-3 group">
                     <img
-                        data-image="logo"
-                        src=""
+                        src="./242833.jpg"
                         alt="CHEF FOOD RESTAURANT Logo"
                         class="h-12 w-auto rounded-full shadow-md transition-transform duration-300 group-hover:scale-105 border border-brand-orange/20"
                     >
-
                     <div class="flex flex-col">
-
-                        <span
-                            class="font-extrabold text-lg sm:text-xl tracking-tight text-brand-dark leading-tight group-hover:text-brand-orange transition-colors"
-                        >
-                            CHEF FOOD
-                        </span>
-
-                        <span
-                            class="text-xs uppercase tracking-widest text-brand-orange font-bold"
-                        >
-                            Restaurant
-                        </span>
-
+                        <span class="font-extrabold text-lg sm:text-xl tracking-tight text-brand-dark leading-tight group-hover:text-brand-orange transition-colors">CHEF FOOD</span>
+                        <span class="text-xs uppercase tracking-widest text-brand-orange font-bold">Restaurant</span>
                     </div>
-
                 </a>
 
-
-                <!-- DESKTOP NAVIGATION -->
-
                 <nav class="hidden md:flex items-center space-x-8">
-
-                    <a href="#home"
-                       class="text-sm font-semibold text-brand-dark hover:text-brand-orange transition-colors">
-                        Home
-                    </a>
-
-                    <a href="#menu"
-                       class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">
-                        Menu
-                    </a>
-
-                    <a href="#about"
-                       class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">
-                        About
-                    </a>
-
-                    <a href="#why-us"
-                       class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">
-                        Why Choose Us
-                    </a>
-
-                    <a href="#delivery"
-                       class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">
-                        Delivery
-                    </a>
-
-                    <a href="#contact"
-                       class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">
-                        Contact
-                    </a>
-
+                    <a href="#home" class="text-sm font-semibold text-brand-dark hover:text-brand-orange transition-colors">Home</a>
+                    <a href="#menu" class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">Menu</a>
+                    <a href="#about" class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">About</a>
+                    <a href="#why-us" class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">Why Choose Us</a>
+                    <a href="#delivery" class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">Delivery</a>
+                    <a href="#contact" class="text-sm font-semibold text-stone-700 hover:text-brand-orange transition-colors">Contact</a>
                 </nav>
 
-
-                <!-- DESKTOP CTA -->
-
                 <div class="hidden md:flex items-center space-x-4">
-
                     <button
                         onclick="openOrderModal('General')"
                         class="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-bold text-white bg-gradient-to-r from-brand-orange to-brand-gold hover:from-brand-dark hover:to-brand-dark transition-all duration-300 shadow-lg shadow-brand-orange/25 hover:shadow-xl transform hover:-translate-y-0.5"
                     >
-
                         <i class="fa-solid fa-utensils mr-2 text-xs"></i>
-
                         Order Now
-
                     </button>
-
                 </div>
 
-
-                <!-- MOBILE MENU BUTTON -->
-
                 <div class="flex md:hidden">
-
                     <button
                         id="mobile-menu-btn"
                         type="button"
                         class="p-2.5 rounded-xl text-stone-800 hover:bg-stone-100 focus:outline-none transition-colors"
                         aria-label="Toggle Navigation"
                     >
-
-                        <i
-                            id="menu-icon-open"
-                            class="fa-solid fa-bars text-xl"
-                        ></i>
-
-                        <i
-                            id="menu-icon-close"
-                            class="fa-solid fa-xmark text-xl hidden"
-                        ></i>
-
+                        <i id="menu-icon-open" class="fa-solid fa-bars text-xl"></i>
+                        <i id="menu-icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
                     </button>
-
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- MOBILE MENU -->
-
-        <div
-            id="mobile-menu"
-            class="hidden md:hidden bg-brand-warmBg/98 border-b border-stone-200 px-4 pt-2 pb-6 space-y-3 shadow-xl"
-        >
-
-            <a
-                href="#home"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-brand-dark hover:bg-stone-100"
-            >
-                Home
-            </a>
-
-            <a
-                href="#menu"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100"
-            >
-                Menu
-            </a>
-
-            <a
-                href="#about"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100"
-            >
-                About
-            </a>
-
-            <a
-                href="#why-us"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100"
-            >
-                Why Choose Us
-            </a>
-
-            <a
-                href="#delivery"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100"
-            >
-                Delivery
-            </a>
-
-            <a
-                href="#contact"
-                onclick="toggleMobileMenu()"
-                class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100"
-            >
-                Contact
-            </a>
-
-
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-warmBg/98 border-b border-stone-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-brand-dark hover:bg-stone-100">Home</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100">Menu</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100">About</a>
+            <a href="#why-us" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100">Why Choose Us</a>
+            <a href="#delivery" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100">Delivery</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg text-base font-semibold text-stone-700 hover:bg-stone-100">Contact</a>
             <div class="pt-2">
-
                 <button
                     onclick="toggleMobileMenu(); openOrderModal('General')"
                     class="w-full flex items-center justify-center px-6 py-3 rounded-full text-base font-bold text-white bg-brand-orange shadow-md"
                 >
-
                     <i class="fa-solid fa-utensils mr-2"></i>
-
                     Order Now
-
                 </button>
-
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- =========================================================
-         HERO
-    ========================================================== -->
-
-    <section
-        id="home"
-        class="pt-24 lg:pt-28 pb-12 lg:pb-20 px-4 sm:px-6 lg:px-8"
-    >
-
+    <section id="home" class="pt-24 lg:pt-28 pb-12 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
+            <div class="bg-gradient-to-br from-stone-900 via-stone-950 to-brand-dark rounded-3xl lg:rounded-[2.5rem] shadow-2xl overflow-hidden relative border border-stone-800/80">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e65100_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
-            <div
-                class="bg-gradient-to-br from-stone-900 via-stone-950 to-brand-dark rounded-3xl lg:rounded-[2.5rem] shadow-2xl overflow-hidden relative border border-stone-800/80"
-            >
-
-                <div
-                    class="absolute inset-0 opacity-10 bg-[radial-gradient(#e65100_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"
-                ></div>
-
-
-                <div
-                    class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] lg:min-h-[640px] items-center relative z-10"
-                >
-
-
-                    <!-- HERO TEXT -->
-
-                    <div
-                        class="lg:col-span-6 p-8 sm:p-12 lg:p-16 text-white flex flex-col justify-center"
-                    >
-
-                        <div
-                            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/20 border border-brand-orange/40 text-brand-gold text-xs font-bold uppercase tracking-widest mb-6 w-fit"
-                        >
-
+                <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] lg:min-h-[640px] items-center relative z-10">
+                    <div class="lg:col-span-6 p-8 sm:p-12 lg:p-16 text-white flex flex-col justify-center">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/20 border border-brand-orange/40 text-brand-gold text-xs font-bold uppercase tracking-widest mb-6 w-fit">
                             <i class="fa-solid fa-fire text-brand-gold"></i>
-
                             <span>CHEF FOOD RESTAURANT</span>
-
                         </div>
 
-
-                        <h1
-                            class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-white mb-6"
-                        >
-
+                        <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-white mb-6">
                             Delicious Nigerian Food,
-
-                            <span class="italic text-brand-gold">
-                                Made With Love.
-                            </span>
-
+                            <span class="italic text-brand-gold">Made With Love.</span>
                         </h1>
 
-
-                        <p
-                            class="text-stone-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
-                        >
-
+                        <p class="text-stone-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
                             Enjoy freshly prepared Nigerian meals,
                             carefully packaged and delivered straight
                             to your doorstep across Lagos.
-
                         </p>
 
-
-                        <div
-                            class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10"
-                        >
-
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
                             <button
                                 onclick="openOrderModal('General')"
                                 class="px-8 py-4 rounded-full bg-gradient-to-r from-brand-orange to-brand-gold hover:from-amber-600 hover:to-orange-600 text-white font-bold text-base shadow-lg shadow-brand-orange/30 transition-all duration-300 text-center flex items-center justify-center gap-2 group"
                             >
-
                                 <span>Order Now</span>
-
-                                <i
-                                    class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"
-                                ></i>
-
+                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                             </button>
 
-
-                            <a
-                                href="#menu"
-                                class="px-8 py-4 rounded-full bg-stone-800/80 hover:bg-stone-700 text-stone-200 hover:text-white border border-stone-700/80 text-center font-bold text-base transition-all duration-300"
-                            >
-
-                                View Menu
-
-                            </a>
-
+                            <a href="#menu" class="px-8 py-4 rounded-full bg-stone-800/80 hover:bg-stone-700 text-stone-200 hover:text-white border border-stone-700/80 text-center font-bold text-base transition-all duration-300">View Menu</a>
                         </div>
 
-
-                        <div
-                            class="pt-6 border-t border-stone-800/80 grid grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-stone-300"
-                        >
-
+                        <div class="pt-6 border-t border-stone-800/80 grid grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-stone-300">
                             <div class="flex items-center gap-2">
-
-                                <div
-                                    class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"
-                                >
-
-                                    <i class="fa-solid fa-check text-[10px]"></i>
-
-                                </div>
-
+                                <div class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></div>
                                 <span>Homemade Taste</span>
-
                             </div>
-
-
                             <div class="flex items-center gap-2">
-
-                                <div
-                                    class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"
-                                >
-
-                                    <i class="fa-solid fa-check text-[10px]"></i>
-
-                                </div>
-
+                                <div class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></div>
                                 <span>Fast Delivery</span>
-
                             </div>
-
-
                             <div class="flex items-center gap-2">
-
-                                <div
-                                    class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"
-                                >
-
-                                    <i class="fa-solid fa-check text-[10px]"></i>
-
-                                </div>
-
+                                <div class="w-5 h-5 rounded-full bg-brand-orange/20 text-brand-gold flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></div>
                                 <span>Affordable Prices</span>
-
                             </div>
-
                         </div>
-
                     </div>
 
+                    <div class="lg:col-span-6 relative h-[380px] sm:h-[480px] lg:h-full w-full bg-gradient-to-t from-stone-950 via-stone-900 to-transparent flex items-center justify-center p-6 lg:p-12 overflow-hidden">
+                        <div class="absolute inset-0 food-glow pointer-events-none opacity-80"></div>
+                        <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-brand-orange/15 blur-3xl -right-10 top-1/2 -translate-y-1/2"></div>
+                        <div class="absolute top-8 right-12 text-emerald-500/40 text-3xl animate-float-slow pointer-events-none"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="absolute bottom-12 left-8 text-amber-500/30 text-2xl animate-float-reverse pointer-events-none"><i class="fa-solid fa-pepper-hot"></i></div>
 
-                    <!-- HERO FOOD SLIDER -->
-
-                    <div
-                        class="lg:col-span-6 relative h-[380px] sm:h-[480px] lg:h-full w-full bg-gradient-to-t from-stone-950 via-stone-900 to-transparent flex items-center justify-center p-6 lg:p-12 overflow-hidden"
-                    >
-
-                        <div
-                            class="absolute inset-0 food-glow pointer-events-none opacity-80"
-                        ></div>
-
-
-                        <div
-                            class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-brand-orange/15 blur-3xl -right-10 top-1/2 -translate-y-1/2"
-                        ></div>
-
-
-                        <div
-                            class="absolute top-8 right-12 text-emerald-500/40 text-3xl animate-float-slow pointer-events-none"
-                        >
-                            <i class="fa-solid fa-leaf"></i>
-                        </div>
-
-
-                        <div
-                            class="absolute bottom-12 left-8 text-amber-500/30 text-2xl animate-float-reverse pointer-events-none"
-                        >
-                            <i class="fa-solid fa-pepper-hot"></i>
-                        </div>
-
-
-                        <div
-                            class="relative w-full max-w-md h-full min-h-[300px] flex items-center justify-center"
-                        >
-
-
-                            <!-- SLIDE 1 -->
-
-                            <div
-                                id="slide-0"
-                                class="hero-slide active"
-                            >
-
-                                <div
-                                    class="relative group w-full flex flex-col items-center"
-                                >
-
-                                    <div
-                                        class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-88 lg:h-88 rounded-full p-2 bg-gradient-to-tr from-brand-orange/40 via-amber-500/20 to-transparent shadow-2xl"
-                                    >
-
+                        <div class="relative w-full max-w-md h-full min-h-[300px] flex items-center justify-center">
+                            <div id="slide-0" class="hero-slide active">
+                                <div class="relative group w-full flex flex-col items-center">
+                                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full p-2 bg-gradient-to-tr from-brand-orange/40 via-amber-500/20 to-transparent shadow-2xl">
                                         <img
-                                            data-image="jollof"
-                                            src=""
+                                            src="./242834.jpg"
                                             alt="Nigerian Jollof Rice with Chicken"
                                             class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-stone-800/80 group-hover:scale-105 transition-transform duration-700"
                                         >
-
                                     </div>
-
-
-                                    <div
-                                        class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-brand-orange/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2"
-                                    >
-
-                                        <span
-                                            class="w-2 h-2 rounded-full bg-brand-orange animate-ping"
-                                        ></span>
-
-                                        <span>
-                                            Signature Jollof Rice & Chicken
-                                        </span>
-
+                                    <div class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-brand-orange/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+                                        <span>Signature Jollof Rice & Chicken</span>
                                     </div>
-
                                 </div>
-
                             </div>
 
-
-                            <!-- SLIDE 2 -->
-
-                            <div
-                                id="slide-1"
-                                class="hero-slide"
-                            >
-
-                                <div
-                                    class="relative group w-full flex flex-col items-center"
-                                >
-
-                                    <div
-                                        class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-88 lg:h-88 rounded-full p-2 bg-gradient-to-tr from-brand-gold/40 via-amber-400/20 to-transparent shadow-2xl"
-                                    >
-
+                            <div id="slide-1" class="hero-slide">
+                                <div class="relative group w-full flex flex-col items-center">
+                                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full p-2 bg-gradient-to-tr from-brand-gold/40 via-amber-400/20 to-transparent shadow-2xl">
                                         <img
-                                            data-image="friedRice"
-                                            src=""
+                                            src="./242835.jpg"
                                             alt="Special Nigerian Fried Rice"
                                             class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-stone-800/80 group-hover:scale-105 transition-transform duration-700"
                                         >
-
                                     </div>
-
-
-                                    <div
-                                        class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-brand-gold/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2"
-                                    >
-
-                                        <span
-                                            class="w-2 h-2 rounded-full bg-brand-gold animate-ping"
-                                        ></span>
-
-                                        <span>
-                                            Special Fried Rice & Wings
-                                        </span>
-
+                                    <div class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-brand-gold/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+                                        <span>Special Fried Rice & Wings</span>
                                     </div>
-
                                 </div>
-
                             </div>
 
-
-                            <!-- SLIDE 3 -->
-
-                            <div
-                                id="slide-2"
-                                class="hero-slide"
-                            >
-
-                                <div
-                                    class="relative group w-full flex flex-col items-center"
-                                >
-
-                                    <div
-                                        class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-88 lg:h-88 rounded-full p-2 bg-gradient-to-tr from-amber-600/40 via-orange-500/20 to-transparent shadow-2xl"
-                                    >
-
+                            <div id="slide-2" class="hero-slide">
+                                <div class="relative group w-full flex flex-col items-center">
+                                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full p-2 bg-gradient-to-tr from-amber-600/40 via-orange-500/20 to-transparent shadow-2xl">
                                         <img
-                                            data-image="chicken"
-                                            src=""
+                                            src="./242836.png"
                                             alt="Crispy Fried Chicken"
                                             class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-stone-800/80 group-hover:scale-105 transition-transform duration-700"
                                         >
-
                                     </div>
-
-
-                                    <div
-                                        class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-amber-500/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2"
-                                    >
-
-                                        <span
-                                            class="w-2 h-2 rounded-full bg-amber-500 animate-ping"
-                                        ></span>
-
-                                        <span>
-                                            Crispy Golden Fried Chicken
-                                        </span>
-
+                                    <div class="mt-4 px-5 py-2 rounded-full bg-stone-900/90 border border-amber-500/40 text-white text-xs sm:text-sm font-bold backdrop-blur-md shadow-xl flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                                        <span>Crispy Golden Fried Chicken</span>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
 
-
-                        <!-- SLIDER DOTS -->
-
-                        <div
-                            class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20"
-                        >
-
-                            <button
-                                onclick="setHeroSlide(0)"
-                                class="hero-dot w-8 h-3 rounded-full bg-brand-orange transition-all duration-300"
-                                aria-label="Go to Jollof Rice"
-                            ></button>
-
-                            <button
-                                onclick="setHeroSlide(1)"
-                                class="hero-dot w-3 h-3 rounded-full bg-stone-600 transition-all duration-300"
-                                aria-label="Go to Fried Rice"
-                            ></button>
-
-                            <button
-                                onclick="setHeroSlide(2)"
-                                class="hero-dot w-3 h-3 rounded-full bg-stone-600 transition-all duration-300"
-                                aria-label="Go to Fried Chicken"
-                            ></button>
-
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+                            <button onclick="setHeroSlide(0)" class="hero-dot w-8 h-3 rounded-full bg-brand-orange transition-all duration-300" aria-label="Go to Jollof Rice"></button>
+                            <button onclick="setHeroSlide(1)" class="hero-dot w-3 h-3 rounded-full bg-stone-600 transition-all duration-300" aria-label="Go to Fried Rice"></button>
+                            <button onclick="setHeroSlide(2)" class="hero-dot w-3 h-3 rounded-full bg-stone-600 transition-all duration-300" aria-label="Go to Fried Chicken"></button>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         MENU
-    ========================================================== -->
-
-    <section
-        id="menu"
-        class="py-16 lg:py-24 bg-brand-warmBg relative"
-    >
-
+    <section id="menu" class="py-16 lg:py-24 bg-brand-warmBg relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
             <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Freshly Cooked Daily
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight"
-                >
-                    Our Popular Meals
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-600 text-base sm:text-lg">
-                    Prepared with authentic Nigerian spices and ingredients
-                    for that unforgettable homemade taste.
-                </p>
-
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Freshly Cooked Daily</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight">Our Popular Meals</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 text-base sm:text-lg">Prepared with authentic Nigerian spices and ingredients for that unforgettable homemade taste.</p>
             </div>
-
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-                <!-- JOLLOF -->
-
-                <div
-                    class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal"
-                >
-
-                    <div
-                        class="relative h-64 overflow-hidden bg-stone-100"
-                    >
-
-                        <img
-                            data-image="jollof"
-                            src=""
-                            alt="Smoky Nigerian Jollof Rice"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        >
-
-                        <span
-                            class="absolute top-4 left-4 bg-brand-orange text-white text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md"
-                        >
-                            Chef Special
-                        </span>
-
+                <div class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="./242834.jpg" alt="Smoky Nigerian Jollof Rice" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-brand-orange text-white text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md">Chef Special</span>
                     </div>
-
-
-                    <div
-                        class="p-6 sm:p-8 flex-1 flex flex-col justify-between"
-                    >
-
+                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                         <div>
-
-                            <h3
-                                class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors"
-                            >
-                                Jollof Rice
-                            </h3>
-
-                            <p
-                                class="text-stone-600 text-sm leading-relaxed mb-6"
-                            >
-                                Richly seasoned smoky Nigerian Jollof rice,
-                                served with tender fried chicken and fried
-                                plantains.
-                            </p>
-
+                            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors">Jollof Rice</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-6">Richly seasoned smoky Nigerian Jollof rice, served with tender fried chicken and fried plantains.</p>
                         </div>
-
-
-                        <div
-                            class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                        >
-
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
                             <div>
-
-                                <span
-                                    class="text-xs text-stone-500 block"
-                                >
-                                    Price
-                                </span>
-
-                                <span
-                                    class="text-sm font-semibold text-brand-orange"
-                                >
-                                    Order to get current price
-                                </span>
-
+                                <span class="text-xs text-stone-500 block">Price</span>
+                                <span class="text-sm font-semibold text-brand-orange">Order to get current price</span>
                             </div>
-
-
-                            <button
-                                onclick="openOrderModal('Jollof Rice')"
-                                class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2"
-                            >
-
-                                <span>Order Now</span>
-
-                                <i
-                                    class="fa-solid fa-cart-shopping text-xs"
-                                ></i>
-
+                            <button onclick="openOrderModal('Jollof Rice')" class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2">
+                                <span>Order Now</span><i class="fa-solid fa-cart-shopping text-xs"></i>
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
-
-                <!-- FRIED RICE -->
-
-                <div
-                    class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal"
-                >
-
-                    <div
-                        class="relative h-64 overflow-hidden bg-stone-100"
-                    >
-
-                        <img
-                            data-image="friedRice"
-                            src=""
-                            alt="Nigerian Fried Rice with Chicken"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        >
-
-                        <span
-                            class="absolute top-4 left-4 bg-brand-gold text-stone-950 text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md"
-                        >
-                            Customer Favorite
-                        </span>
-
+                <div class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="./242835.jpg" alt="Nigerian Fried Rice with Chicken" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-brand-gold text-stone-950 text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md">Customer Favorite</span>
                     </div>
-
-
-                    <div
-                        class="p-6 sm:p-8 flex-1 flex flex-col justify-between"
-                    >
-
+                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                         <div>
-
-                            <h3
-                                class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors"
-                            >
-                                Fried Rice
-                            </h3>
-
-                            <p
-                                class="text-stone-600 text-sm leading-relaxed mb-6"
-                            >
-                                Vibrant, savory Nigerian fried rice packed
-                                with sweet corn, veggies, liver, and juicy
-                                fried chicken wings.
-                            </p>
-
+                            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors">Fried Rice</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-6">Vibrant, savory Nigerian fried rice packed with sweet corn, veggies, liver, and juicy fried chicken wings.</p>
                         </div>
-
-
-                        <div
-                            class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                        >
-
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
                             <div>
-
-                                <span
-                                    class="text-xs text-stone-500 block"
-                                >
-                                    Price
-                                </span>
-
-                                <span
-                                    class="text-sm font-semibold text-brand-orange"
-                                >
-                                    Order to get current price
-                                </span>
-
+                                <span class="text-xs text-stone-500 block">Price</span>
+                                <span class="text-sm font-semibold text-brand-orange">Order to get current price</span>
                             </div>
-
-
-                            <button
-                                onclick="openOrderModal('Fried Rice')"
-                                class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2"
-                            >
-
-                                <span>Order Now</span>
-
-                                <i
-                                    class="fa-solid fa-cart-shopping text-xs"
-                                ></i>
-
+                            <button onclick="openOrderModal('Fried Rice')" class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2">
+                                <span>Order Now</span><i class="fa-solid fa-cart-shopping text-xs"></i>
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
-
-                <!-- CHICKEN -->
-
-                <div
-                    class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal"
-                >
-
-                    <div
-                        class="relative h-64 overflow-hidden bg-stone-100"
-                    >
-
-                        <img
-                            data-image="chicken"
-                            src=""
-                            alt="Crispy Nigerian Fried Chicken"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        >
-
-                        <span
-                            class="absolute top-4 left-4 bg-amber-700 text-white text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md"
-                        >
-                            Crispy & Juicy
-                        </span>
-
+                <div class="bg-brand-cardBg rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5 reveal">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="./242836.png" alt="Crispy Nigerian Fried Chicken" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-amber-700 text-white text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md">Crispy & Juicy</span>
                     </div>
-
-
-                    <div
-                        class="p-6 sm:p-8 flex-1 flex flex-col justify-between"
-                    >
-
+                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                         <div>
-
-                            <h3
-                                class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors"
-                            >
-                                Fried Chicken
-                            </h3>
-
-                            <p
-                                class="text-stone-600 text-sm leading-relaxed mb-6"
-                            >
-                                Crispy on the outside, juicy on the inside.
-                                Perfectly spiced chicken cuts to pair with
-                                any meal.
-                            </p>
-
+                            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition-colors">Fried Chicken</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-6">Crispy on the outside, juicy on the inside. Perfectly spiced chicken cuts to pair with any meal.</p>
                         </div>
-
-
-                        <div
-                            class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                        >
-
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
                             <div>
-
-                                <span
-                                    class="text-xs text-stone-500 block"
-                                >
-                                    Price
-                                </span>
-
-                                <span
-                                    class="text-sm font-semibold text-brand-orange"
-                                >
-                                    Order to get current price
-                                </span>
-
+                                <span class="text-xs text-stone-500 block">Price</span>
+                                <span class="text-sm font-semibold text-brand-orange">Order to get current price</span>
                             </div>
-
-
-                            <button
-                                onclick="openOrderModal('Fried Chicken')"
-                                class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2"
-                            >
-
-                                <span>Order Now</span>
-
-                                <i
-                                    class="fa-solid fa-cart-shopping text-xs"
-                                ></i>
-
+                            <button onclick="openOrderModal('Fried Chicken')" class="px-5 py-2.5 rounded-full bg-brand-dark hover:bg-brand-orange text-white text-sm font-bold transition-colors shadow-md flex items-center gap-2">
+                                <span>Order Now</span><i class="fa-solid fa-cart-shopping text-xs"></i>
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
 
             <div class="mt-12 text-center reveal">
-
-                <p
-                    class="text-stone-600 text-sm bg-stone-100 border border-stone-200 rounded-full py-3 px-6 inline-flex items-center gap-2"
-                >
-
-                    <i
-                        class="fa-solid fa-circle-info text-brand-orange"
-                    ></i>
-
-                    <span>
-                        Custom orders & combination packs available!
-                        Contact us via WhatsApp to inquire about daily
-                        specials.
-                    </span>
-
+                <p class="text-stone-600 text-sm bg-stone-100 border border-stone-200 rounded-full py-3 px-6 inline-flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-brand-orange"></i>
+                    <span>Custom orders & combination packs available! Contact us via WhatsApp to inquire about daily specials.</span>
                 </p>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         WHY CHOOSE US
-    ========================================================== -->
-
-    <section
-        id="why-us"
-        class="py-16 lg:py-24 bg-stone-900 text-white relative overflow-hidden"
-    >
-
-        <div
-            class="absolute -top-24 -left-24 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"
-        ></div>
-
-
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
-
-            <div
-                class="text-center max-w-2xl mx-auto mb-16 reveal"
-            >
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Our Core Promise
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
-                >
-                    Why Choose Chef Food?
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-300 text-base sm:text-lg">
-                    We take pride in providing a reliable, tasty,
-                    and satisfying dining experience with every order.
-                </p>
-
+    <section id="why-us" class="py-16 lg:py-24 bg-stone-900 text-white relative overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-4 py-1.5 rounded-full inline-block mb-3">Our Core Promise</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Why Choose Chef Food?</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-300 text-base sm:text-lg">We take pride in providing a reliable, tasty, and satisfying dining experience with every order.</p>
             </div>
 
-
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-
-
-                <!-- FEATURE 1 -->
-
-                <div
-                    class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"
-                    >
-
-                        <i class="fa-solid fa-utensils"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-white mb-3"
-                    >
-                        Homemade Taste
-                    </h3>
-
-                    <p
-                        class="text-stone-400 text-sm leading-relaxed"
-                    >
-                        Freshly prepared meals with rich, authentic,
-                        and deeply satisfying Nigerian flavor.
-                    </p>
-
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"><i class="fa-solid fa-utensils"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-3">Homemade Taste</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">Freshly prepared meals with rich, authentic, and deeply satisfying Nigerian flavor.</p>
                 </div>
 
-
-                <!-- FEATURE 2 -->
-
-                <div
-                    class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"
-                    >
-
-                        <i class="fa-solid fa-motorcycle"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-white mb-3"
-                    >
-                        Fast Delivery
-                    </h3>
-
-                    <p
-                        class="text-stone-400 text-sm leading-relaxed"
-                    >
-                        Get your food delivered quickly and conveniently
-                        across key hubs in Lagos State.
-                    </p>
-
+                <div class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"><i class="fa-solid fa-motorcycle"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-3">Fast Delivery</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">Get your food delivered quickly and conveniently across key hubs in Lagos State.</p>
                 </div>
 
-
-                <!-- FEATURE 3 -->
-
-                <div
-                    class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"
-                    >
-
-                        <i class="fa-solid fa-wallet"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-white mb-3"
-                    >
-                        Affordable
-                    </h3>
-
-                    <p
-                        class="text-stone-400 text-sm leading-relaxed"
-                    >
-                        Great food at pocket-friendly prices designed
-                        for students, workers, and families.
-                    </p>
-
+                <div class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"><i class="fa-solid fa-wallet"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-3">Affordable</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">Great food at pocket-friendly prices designed for students, workers, and families.</p>
                 </div>
 
-
-                <!-- FEATURE 4 -->
-
-                <div
-                    class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"
-                    >
-
-                        <i class="fa-solid fa-box"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-white mb-3"
-                    >
-                        Quality Packaging
-                    </h3>
-
-                    <p
-                        class="text-stone-400 text-sm leading-relaxed"
-                    >
-                        Meals are tightly packaged for a clean, warm,
-                        and spill-free delivery experience.
-                    </p>
-
+                <div class="bg-stone-800/60 border border-stone-700/80 p-8 rounded-3xl hover:border-brand-orange/60 hover:bg-stone-800 transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all"><i class="fa-solid fa-box"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-3">Quality Packaging</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">Meals are tightly packaged for a clean, warm, and spill-free delivery experience.</p>
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         ABOUT
-    ========================================================== -->
-
-    <section
-        id="about"
-        class="py-16 lg:py-24 bg-brand-warmBg relative"
-    >
-
+    <section id="about" class="py-16 lg:py-24 bg-brand-warmBg relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div
-                class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
-            >
-
-
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 <div class="lg:col-span-6 relative reveal">
-
-                    <div
-                        class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
-                    >
-
-                        <img
-                            data-image="jollof"
-                            src=""
-                            alt="Chef Food Restaurant Dish"
-                            class="w-full h-[400px] sm:h-[480px] object-cover"
-                        >
-
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="./242834.jpg" alt="Chef Food Restaurant Dish" class="w-full h-[400px] sm:h-[480px] object-cover">
                     </div>
-
-
-                    <div
-                        class="absolute -bottom-6 -right-2 sm:bottom-6 sm:-right-6 bg-stone-900 text-white p-6 rounded-2xl shadow-xl border border-stone-700 max-w-xs hidden sm:block"
-                    >
-
+                    <div class="absolute -bottom-6 -right-2 sm:bottom-6 sm:-right-6 bg-stone-900 text-white p-6 rounded-2xl shadow-xl border border-stone-700 max-w-xs hidden sm:block">
                         <div class="flex items-center gap-3 mb-2">
-
-                            <span
-                                class="text-2xl text-brand-gold font-serif font-bold"
-                            >
-                                Est. 2021
-                            </span>
-
+                            <span class="text-2xl text-brand-gold font-serif font-bold">Est. 2021</span>
                         </div>
-
-                        <p
-                            class="text-xs text-stone-300 leading-relaxed"
-                        >
-                            Serving authentic Lagos flavors with continuous
-                            dedication to quality and taste.
-                        </p>
-
+                        <p class="text-xs text-stone-300 leading-relaxed">Serving authentic Lagos flavors with continuous dedication to quality and taste.</p>
                     </div>
-
                 </div>
-
 
                 <div class="lg:col-span-6 reveal">
-
-                    <span
-                        class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                    >
-                        Our Journey
-                    </span>
-
-                    <h2
-                        class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight mb-6"
-                    >
-                        Good Food. Great Moments.
-                    </h2>
-
-
-                    <div
-                        class="space-y-4 text-stone-600 text-base leading-relaxed"
-                    >
-
-                        <p>
-                            Founded in 2021 in Lagos State,
-                            <strong>CHEF FOOD RESTAURANT</strong>
-                            was born out of a passion for authentic Nigerian
-                            homemade meals that bring people together.
-                        </p>
-
-                        <p>
-                            We understand that busy schedules shouldn't mean
-                            compromising on quality food. Whether you are a
-                            student preparing for exams, a working professional
-                            at the office, or ordering a warm feast for your
-                            family, we ensure every dish is cooked with love,
-                            hygienic standards, and high-quality ingredients.
-                        </p>
-
-                        <p>
-                            Our commitment goes beyond cooking. From our kitchen
-                            to your table, we prioritize reliable packaging and
-                            speedy delivery across Lagos so your food arrives
-                            fresh and piping hot.
-                        </p>
-
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Our Journey</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight mb-6">Good Food. Great Moments.</h2>
+                    <div class="space-y-4 text-stone-600 text-base leading-relaxed">
+                        <p>Founded in 2021 in Lagos State, <strong>CHEF FOOD RESTAURANT</strong> was born out of a passion for authentic Nigerian homemade meals that bring people together.</p>
+                        <p>We understand that busy schedules shouldn't mean compromising on quality food. Whether you are a student preparing for exams, a working professional at the office, or ordering a warm feast for your family, we ensure every dish is cooked with love, hygienic standards, and high-quality ingredients.</p>
+                        <p>Our commitment goes beyond cooking. From our kitchen to your table, we prioritize reliable packaging and speedy delivery across Lagos so your food arrives fresh and piping hot.</p>
                     </div>
-
-
-                    <div
-                        class="mt-8 pt-6 border-t border-stone-200 grid grid-cols-2 gap-4 text-sm font-semibold text-brand-dark"
-                    >
-
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check text-brand-orange"></i>
-                            <span>Lagos State Delivery</span>
-                        </div>
-
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check text-brand-orange"></i>
-                            <span>Hygienic Preparation</span>
-                        </div>
-
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check text-brand-orange"></i>
-                            <span>Fresh Ingredients</span>
-                        </div>
-
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check text-brand-orange"></i>
-                            <span>Student & Family Friendly</span>
-                        </div>
-
+                    <div class="mt-8 pt-6 border-t border-stone-200 grid grid-cols-2 gap-4 text-sm font-semibold text-brand-dark">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-orange"></i><span>Lagos State Delivery</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-orange"></i><span>Hygienic Preparation</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-orange"></i><span>Fresh Ingredients</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-orange"></i><span>Student & Family Friendly</span></div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================================================
-         FOOD SHOWCASE
-    ========================================================== -->
 
     <section class="py-16 lg:py-24 bg-stone-100">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div
-                class="text-center max-w-2xl mx-auto mb-12 reveal"
-            >
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Visual Feast
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark"
-                >
-                    Food Showcase
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-600 text-sm sm:text-base">
-                    Take a glance at our freshly cooked dishes prepared
-                    daily for our valued customers.
-                </p>
-
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Visual Feast</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">Food Showcase</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 text-sm sm:text-base">Take a glance at our freshly cooked dishes prepared daily for our valued customers.</p>
             </div>
 
-
-            <div
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-
-
-                <!-- SHOWCASE 1 -->
-
-                <div
-                    class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 reveal"
-                >
-
-                    <img
-                        data-image="jollof"
-                        src=""
-                        alt="Smoky Jollof Rice Dish"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    >
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white"
-                    >
-
-                        <span
-                            class="text-xs text-brand-gold font-bold uppercase tracking-wider"
-                        >
-                            Chef Signature
-                        </span>
-
-                        <h4
-                            class="text-xl font-bold font-serif"
-                        >
-                            Smoky Jollof Delights
-                        </h4>
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 reveal">
+                    <img src="./242834.jpg" alt="Smoky Jollof Rice Dish" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs text-brand-gold font-bold uppercase tracking-wider">Chef Signature</span>
+                        <h4 class="text-xl font-bold font-serif">Smoky Jollof Delights</h4>
                     </div>
-
                 </div>
 
-
-                <!-- SHOWCASE 2 -->
-
-                <div
-                    class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 reveal"
-                >
-
-                    <img
-                        data-image="friedRice"
-                        src=""
-                        alt="Golden Fried Rice Dish"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    >
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white"
-                    >
-
-                        <span
-                            class="text-xs text-brand-gold font-bold uppercase tracking-wider"
-                        >
-                            Special Recipe
-                        </span>
-
-                        <h4
-                            class="text-xl font-bold font-serif"
-                        >
-                            Savory Fried Rice
-                        </h4>
-
+                <div class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 reveal">
+                    <img src="./242835.jpg" alt="Golden Fried Rice Dish" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs text-brand-gold font-bold uppercase tracking-wider">Special Recipe</span>
+                        <h4 class="text-xl font-bold font-serif">Savory Fried Rice</h4>
                     </div>
-
                 </div>
 
-
-                <!-- SHOWCASE 3 -->
-
-                <div
-                    class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 sm:col-span-2 lg:col-span-1 reveal"
-                >
-
-                    <img
-                        data-image="chicken"
-                        src=""
-                        alt="Crispy Fried Chicken"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    >
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white"
-                    >
-
-                        <span
-                            class="text-xs text-brand-gold font-bold uppercase tracking-wider"
-                        >
-                            Crispy Perfection
-                        </span>
-
-                        <h4
-                            class="text-xl font-bold font-serif"
-                        >
-                            Golden Fried Chicken
-                        </h4>
-
+                <div class="relative rounded-3xl overflow-hidden shadow-lg group h-72 sm:h-80 sm:col-span-2 lg:col-span-1 reveal">
+                    <img src="./242836.png" alt="Crispy Fried Chicken" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs text-brand-gold font-bold uppercase tracking-wider">Crispy Perfection</span>
+                        <h4 class="text-xl font-bold font-serif">Golden Fried Chicken</h4>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         DELIVERY
-    ========================================================== -->
-
-    <section
-        id="delivery"
-        class="py-16 lg:py-24 bg-brand-warmBg"
-    >
-
+    <section id="delivery" class="py-16 lg:py-24 bg-brand-warmBg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div
-                class="text-center max-w-2xl mx-auto mb-16 reveal"
-            >
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Simple & Fast
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark"
-                >
-                    How Ordering Works
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-600 text-base">
-                    3 easy steps to getting hot, delicious food delivered
-                    straight to you.
-                </p>
-
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Simple & Fast</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">How Ordering Works</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 text-base">3 easy steps to getting hot, delicious food delivered straight to you.</p>
             </div>
 
-
-            <div
-                class="grid grid-cols-1 md:grid-cols-3 gap-8 relative"
-            >
-
-
-                <div
-                    class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal"
-                >
-
-                    <div
-                        class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30"
-                    >
-                        1
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-3"
-                    >
-                        Choose Your Meal
-                    </h3>
-
-                    <p
-                        class="text-stone-600 text-sm leading-relaxed"
-                    >
-                        Browse our delicious list of meals including
-                        Jollof Rice, Fried Rice, and Fried Chicken.
-                    </p>
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal">
+                    <div class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30">1</div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-3">Choose Your Meal</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Browse our delicious list of meals including Jollof Rice, Fried Rice, and Fried Chicken.</p>
                 </div>
 
-
-                <div
-                    class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal"
-                >
-
-                    <div
-                        class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30"
-                    >
-                        2
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-3"
-                    >
-                        Place Your Order
-                    </h3>
-
-                    <p
-                        class="text-stone-600 text-sm leading-relaxed"
-                    >
-                        Send us your order via WhatsApp or phone call at
-                        08030425401 with your location details.
-                    </p>
-
+                <div class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal">
+                    <div class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30">2</div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-3">Place Your Order</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Send us your order via WhatsApp or phone call at 08030425401 with your location details.</p>
                 </div>
 
-
-                <div
-                    class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal"
-                >
-
-                    <div
-                        class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30"
-                    >
-                        3
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-3"
-                    >
-                        Get It Delivered
-                    </h3>
-
-                    <p
-                        class="text-stone-600 text-sm leading-relaxed"
-                    >
-                        Sit back and relax while our dispatch rider delivers
-                        your neatly packaged meal warm and fresh.
-                    </p>
-
+                <div class="bg-brand-cardBg border border-stone-200/80 rounded-3xl p-8 text-center relative z-10 shadow-sm hover:shadow-xl transition-all duration-300 reveal">
+                    <div class="w-16 h-16 rounded-full bg-brand-orange text-white text-2xl font-bold mx-auto flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/30">3</div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-3">Get It Delivered</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Sit back and relax while our dispatch rider delivers your neatly packaged meal warm and fresh.</p>
                 </div>
-
             </div>
 
-
-            <div
-                class="mt-16 bg-gradient-to-r from-brand-dark to-stone-900 rounded-3xl p-8 sm:p-12 text-white text-center shadow-xl border border-stone-800 reveal flex flex-col sm:flex-row items-center justify-between gap-6"
-            >
-
+            <div class="mt-16 bg-gradient-to-r from-brand-dark to-stone-900 rounded-3xl p-8 sm:p-12 text-white text-center shadow-xl border border-stone-800 reveal flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="text-left max-w-xl">
-
-                    <div
-                        class="inline-flex items-center gap-2 text-brand-gold text-xs font-bold uppercase tracking-wider mb-2"
-                    >
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                        <span>Lagos Wide Coverage</span>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2"
-                    >
-                        Fresh meals delivered across Lagos.
-                    </h3>
-
-                    <p class="text-stone-300 text-sm">
-                        Serving homes, offices, campuses, and special events daily.
-                    </p>
-
+                    <div class="inline-flex items-center gap-2 text-brand-gold text-xs font-bold uppercase tracking-wider mb-2"><i class="fa-solid fa-location-dot"></i><span>Lagos Wide Coverage</span></div>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Fresh meals delivered across Lagos.</h3>
+                    <p class="text-stone-300 text-sm">Serving homes, offices, campuses, and special events daily.</p>
                 </div>
-
-
-                <button
-                    onclick="openOrderModal('General')"
-                    class="px-8 py-4 rounded-full bg-brand-orange hover:bg-amber-600 text-white font-bold text-sm shrink-0 shadow-lg transition-all"
-                >
-                    Order Delivery Now
-                </button>
-
+                <button onclick="openOrderModal('General')" class="px-8 py-4 rounded-full bg-brand-orange hover:bg-amber-600 text-white font-bold text-sm shrink-0 shadow-lg transition-all">Order Delivery Now</button>
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================================================
-         TESTIMONIALS
-    ========================================================== -->
 
     <section class="py-16 lg:py-24 bg-stone-100">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div
-                class="text-center max-w-2xl mx-auto mb-16 reveal"
-            >
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Customer Feedback
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark"
-                >
-                    What Our Customers Say
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-600 text-sm sm:text-base">
-                    Read feedback from our valued customers across Lagos State.
-                </p>
-
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Customer Feedback</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">What Our Customers Say</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 text-sm sm:text-base">Read feedback from our valued customers across Lagos State.</p>
             </div>
-
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-                <!-- TESTIMONIAL 1 -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between"
-                >
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between">
                     <div>
-
-                        <div
-                            class="flex text-amber-500 mb-4 gap-1 text-xs"
-                        >
-
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-
+                        <div class="flex text-amber-500 mb-4 gap-1 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-
-                        <p
-                            class="text-stone-700 text-sm leading-relaxed italic mb-6"
-                        >
-                            "The Jollof Rice taste is exactly like a warm
-                            homemade Sunday meal. Packaging was very neat
-                            and the food arrived piping hot."
-                        </p>
-
+                        <p class="text-stone-700 text-sm leading-relaxed italic mb-6">"The Jollof Rice taste is exactly like a warm homemade Sunday meal. Packaging was very neat and the food arrived piping hot."</p>
                     </div>
-
-
-                    <div
-                        class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <span
-                                class="text-sm font-bold text-brand-dark block"
-                            >
-                                Lagos Resident
-                            </span>
-
-                            <span
-                                class="text-xs text-stone-500"
-                            >
-                                Verified Customer
-                            </span>
-
-                        </div>
-
-                        <i
-                            class="fa-solid fa-quote-right text-stone-300 text-2xl"
-                        ></i>
-
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div><span class="text-sm font-bold text-brand-dark block">Lagos Resident</span><span class="text-xs text-stone-500">Verified Customer</span></div>
+                        <i class="fa-solid fa-quote-right text-stone-300 text-2xl"></i>
                     </div>
-
                 </div>
 
-
-                <!-- TESTIMONIAL 2 -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between"
-                >
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between">
                     <div>
-
-                        <div
-                            class="flex text-amber-500 mb-4 gap-1 text-xs"
-                        >
-
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-
+                        <div class="flex text-amber-500 mb-4 gap-1 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-
-                        <p
-                            class="text-stone-700 text-sm leading-relaxed italic mb-6"
-                        >
-                            "Ordered Fried Rice and Chicken for a lunch
-                            meeting at the office. Fast delivery, affordable
-                            pricing, and everyone loved the food!"
-                        </p>
-
+                        <p class="text-stone-700 text-sm leading-relaxed italic mb-6">"Ordered Fried Rice and Chicken for a lunch meeting at the office. Fast delivery, affordable pricing, and everyone loved the food!"</p>
                     </div>
-
-
-                    <div
-                        class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <span
-                                class="text-sm font-bold text-brand-dark block"
-                            >
-                                Worker in Lagos
-                            </span>
-
-                            <span
-                                class="text-xs text-stone-500"
-                            >
-                                Verified Customer
-                            </span>
-
-                        </div>
-
-                        <i
-                            class="fa-solid fa-quote-right text-stone-300 text-2xl"
-                        ></i>
-
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div><span class="text-sm font-bold text-brand-dark block">Worker in Lagos</span><span class="text-xs text-stone-500">Verified Customer</span></div>
+                        <i class="fa-solid fa-quote-right text-stone-300 text-2xl"></i>
                     </div>
-
                 </div>
 
-
-                <!-- TESTIMONIAL 3 -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between"
-                >
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 shadow-sm hover:shadow-md transition-shadow reveal flex flex-col justify-between">
                     <div>
-
-                        <div
-                            class="flex text-amber-500 mb-4 gap-1 text-xs"
-                        >
-
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-
+                        <div class="flex text-amber-500 mb-4 gap-1 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-
-                        <p
-                            class="text-stone-700 text-sm leading-relaxed italic mb-6"
-                        >
-                            "As a student, finding delicious meals that don't
-                            break the bank is tough. Chef Food Restaurant is
-                            my reliable go-to every week."
-                        </p>
-
+                        <p class="text-stone-700 text-sm leading-relaxed italic mb-6">"As a student, finding delicious meals that don't break the bank is tough. Chef Food Restaurant is my reliable go-to every week."</p>
                     </div>
-
-
-                    <div
-                        class="pt-4 border-t border-stone-100 flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <span
-                                class="text-sm font-bold text-brand-dark block"
-                            >
-                                Student in Lagos
-                            </span>
-
-                            <span
-                                class="text-xs text-stone-500"
-                            >
-                                Verified Customer
-                            </span>
-
-                        </div>
-
-                        <i
-                            class="fa-solid fa-quote-right text-stone-300 text-2xl"
-                        ></i>
-
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div><span class="text-sm font-bold text-brand-dark block">Student in Lagos</span><span class="text-xs text-stone-500">Verified Customer</span></div>
+                        <i class="fa-solid fa-quote-right text-stone-300 text-2xl"></i>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
+    <section class="py-16 lg:py-24 bg-gradient-to-br from-brand-dark via-stone-950 to-brand-deepBrown text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-brand-gold bg-brand-orange/20 border border-brand-orange/30 px-4 py-1.5 rounded-full inline-block mb-6">Hungry? We've got you!</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight mb-6">Your Next Delicious Meal Is Just One Order Away.</h2>
+            <p class="text-stone-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">Craving homemade Nigerian food? Place your order today and enjoy Chef Food Restaurant from the comfort of your home, office or campus.</p>
 
-    <!-- =========================================================
-         FINAL CTA
-    ========================================================== -->
-
-    <section
-        class="py-16 lg:py-24 bg-gradient-to-br from-brand-dark via-stone-950 to-brand-deepBrown text-white relative overflow-hidden"
-    >
-
-        <div
-            class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal"
-        >
-
-            <span
-                class="text-xs font-extrabold uppercase tracking-widest text-brand-gold bg-brand-orange/20 border border-brand-orange/30 px-4 py-1.5 rounded-full inline-block mb-6"
-            >
-                Hungry? We've got you!
-            </span>
-
-            <h2
-                class="font-serif text-3xl sm:text-5xl font-bold tracking-tight mb-6"
-            >
-                Your Next Delicious Meal Is Just One Order Away.
-            </h2>
-
-            <p
-                class="text-stone-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
-            >
-                Craving homemade Nigerian food?
-                Place your order today and enjoy Chef Food Restaurant
-                from the comfort of your home, office or campus.
-            </p>
-
-
-            <div
-                class="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-
-                <button
-                    onclick="openOrderModal('General')"
-                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-orange to-brand-gold hover:from-amber-600 hover:to-orange-600 text-white font-bold text-base shadow-xl transition-all duration-300 flex items-center justify-center gap-3"
-                >
-
-                    <i class="fa-solid fa-utensils"></i>
-
-                    <span>Order Now</span>
-
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="openOrderModal('General')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-orange to-brand-gold hover:from-amber-600 hover:to-orange-600 text-white font-bold text-base shadow-xl transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-utensils"></i><span>Order Now</span>
                 </button>
-
-
-                <a
-                    href="https://wa.me/2348030425401"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl transition-all duration-300 flex items-center justify-center gap-3"
-                >
-
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
-
-                    <span>
-                        WhatsApp Us (08030425401)
-                    </span>
-
+                <a href="https://wa.me/2348030425401" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-xl"></i><span>WhatsApp Us (08030425401)</span>
                 </a>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         CONTACT
-    ========================================================== -->
-
-    <section
-        id="contact"
-        class="py-16 lg:py-24 bg-brand-warmBg"
-    >
-
+    <section id="contact" class="py-16 lg:py-24 bg-brand-warmBg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-            <div
-                class="text-center max-w-2xl mx-auto mb-16 reveal"
-            >
-
-                <span
-                    class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3"
-                >
-                    Get In Touch
-                </span>
-
-                <h2
-                    class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark"
-                >
-                    Contact Us
-                </h2>
-
-                <div
-                    class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"
-                ></div>
-
-                <p class="text-stone-600 text-base">
-                    We are ready to take your order and answer any questions.
-                </p>
-
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-4 py-1.5 rounded-full inline-block mb-3">Get In Touch</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">Contact Us</h2>
+                <div class="w-16 h-1 bg-brand-orange mx-auto my-4 rounded-full"></div>
+                <p class="text-stone-600 text-base">We are ready to take your order and answer any questions.</p>
             </div>
-
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-                <!-- LOCATION -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center text-2xl mx-auto mb-6"
-                    >
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-2"
-                    >
-                        Location
-                    </h3>
-
-                    <p class="text-stone-600 text-sm">
-                        Lagos State, Nigeria
-                    </p>
-
-                    <span
-                        class="text-xs text-stone-400 block mt-2"
-                    >
-                        Delivery available across Lagos
-                    </span>
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center text-2xl mx-auto mb-6"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-2">Location</h3>
+                    <p class="text-stone-600 text-sm">Lagos State, Nigeria</p>
+                    <span class="text-xs text-stone-400 block mt-2">Delivery available across Lagos</span>
                 </div>
 
-
-                <!-- PHONE -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center text-2xl mx-auto mb-6"
-                    >
-
-                        <i class="fa-solid fa-phone"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-2"
-                    >
-                        Phone Call
-                    </h3>
-
-                    <a
-                        href="tel:08030425401"
-                        class="text-stone-800 font-bold text-base hover:text-brand-orange transition-colors"
-                    >
-                        08030425401
-                    </a>
-
-                    <span
-                        class="text-xs text-stone-400 block mt-2"
-                    >
-                        Available for direct calls
-                    </span>
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center text-2xl mx-auto mb-6"><i class="fa-solid fa-phone"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-2">Phone Call</h3>
+                    <a href="tel:08030425401" class="text-stone-800 font-bold text-base hover:text-brand-orange transition-colors">08030425401</a>
+                    <span class="text-xs text-stone-400 block mt-2">Available for direct calls</span>
                 </div>
 
-
-                <!-- WHATSAPP -->
-
-                <div
-                    class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal"
-                >
-
-                    <div
-                        class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-6"
-                    >
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                    </div>
-
-                    <h3
-                        class="font-serif text-xl font-bold text-brand-dark mb-2"
-                    >
-                        WhatsApp Order
-                    </h3>
-
-                    <a
-                        href="https://wa.me/2348030425401"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-emerald-700 font-bold text-base hover:underline"
-                    >
-                        08030425401
-                    </a>
-
-                    <span
-                        class="text-xs text-stone-400 block mt-2"
-                    >
-                        Fastest way to order & inquire
-                    </span>
-
+                <div class="bg-brand-cardBg p-8 rounded-3xl border border-stone-200/80 text-center shadow-sm hover:shadow-lg transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-6"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-brand-dark mb-2">WhatsApp Order</h3>
+                    <a href="https://wa.me/2348030425401" target="_blank" rel="noopener noreferrer" class="text-emerald-700 font-bold text-base hover:underline">08030425401</a>
+                    <span class="text-xs text-stone-400 block mt-2">Fastest way to order & inquire</span>
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer
-        class="bg-stone-950 text-white pt-16 pb-12 border-t border-stone-800"
-    >
-
+    <footer class="bg-stone-950 text-white pt-16 pb-12 border-t border-stone-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-            <div
-                class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12"
-            >
-
-
-                <!-- BRAND -->
-
-                <div
-                    class="md:col-span-5 space-y-4"
-                >
-
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+                <div class="md:col-span-5 space-y-4">
                     <div class="flex items-center gap-3">
-
-                        <img
-                            data-image="logo"
-                            src=""
-                            alt="CHEF FOOD RESTAURANT Logo"
-                            class="h-12 w-auto rounded-full border border-stone-700"
-                        >
-
+                        <img src="./242833.jpg" alt="CHEF FOOD RESTAURANT Logo" class="h-12 w-auto rounded-full border border-stone-700">
                         <div>
-
-                            <span
-                                class="font-extrabold text-xl tracking-tight text-white block"
-                            >
-                                CHEF FOOD
-                            </span>
-
-                            <span
-                                class="text-xs uppercase tracking-widest text-brand-gold font-bold"
-                            >
-                                Restaurant
-                            </span>
-
+                            <span class="font-extrabold text-xl tracking-tight text-white block">CHEF FOOD</span>
+                            <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Restaurant</span>
                         </div>
-
                     </div>
-
-
-                    <p
-                        class="text-stone-400 text-sm leading-relaxed max-w-sm"
-                    >
-                        Serving delicious, freshly cooked homemade Nigerian
-                        food carefully packaged and delivered across Lagos
-                        State since 2021.
-                    </p>
-
+                    <p class="text-stone-400 text-sm leading-relaxed max-w-sm">Serving delicious, freshly cooked homemade Nigerian food carefully packaged and delivered across Lagos State since 2021.</p>
                 </div>
 
-
-                <!-- QUICK LINKS -->
-
-                <div
-                    class="md:col-span-3 space-y-3"
-                >
-
-                    <h4
-                        class="text-sm font-bold uppercase tracking-wider text-brand-gold"
-                    >
-                        Quick Links
-                    </h4>
-
-                    <ul
-                        class="space-y-2 text-sm text-stone-400"
-                    >
-
-                        <li>
-                            <a href="#home" class="hover:text-white transition-colors">
-                                Home
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#menu" class="hover:text-white transition-colors">
-                                Menu
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#about" class="hover:text-white transition-colors">
-                                About Us
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#why-us" class="hover:text-white transition-colors">
-                                Why Choose Us
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#delivery" class="hover:text-white transition-colors">
-                                Delivery Info
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#contact" class="hover:text-white transition-colors">
-                                Contact
-                            </a>
-                        </li>
-
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-brand-gold">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#menu" class="hover:text-white transition-colors">Menu</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#why-us" class="hover:text-white transition-colors">Why Choose Us</a></li>
+                        <li><a href="#delivery" class="hover:text-white transition-colors">Delivery Info</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
-
                 </div>
 
-
-                <!-- CONTACT INFO -->
-
-                <div
-                    class="md:col-span-4 space-y-3"
-                >
-
-                    <h4
-                        class="text-sm font-bold uppercase tracking-wider text-brand-gold"
-                    >
-                        Contact Info
-                    </h4>
-
-
-                    <p
-                        class="text-sm text-stone-400 flex items-center gap-2"
-                    >
-
-                        <i class="fa-solid fa-location-dot text-brand-orange"></i>
-
-                        Lagos State, Nigeria
-
-                    </p>
-
-
-                    <p
-                        class="text-sm text-stone-400 flex items-center gap-2"
-                    >
-
-                        <i class="fa-solid fa-phone text-brand-orange"></i>
-
-                        08030425401
-
-                    </p>
-
-
-                    <p
-                        class="text-sm text-stone-400 flex items-center gap-2"
-                    >
-
-                        <i class="fa-brands fa-whatsapp text-emerald-500"></i>
-
-                        08030425401
-
-                    </p>
-
-
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-brand-gold">Contact Info</h4>
+                    <p class="text-sm text-stone-400 flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-orange"></i>Lagos State, Nigeria</p>
+                    <p class="text-sm text-stone-400 flex items-center gap-2"><i class="fa-solid fa-phone text-brand-orange"></i>08030425401</p>
+                    <p class="text-sm text-stone-400 flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500"></i>08030425401</p>
                     <div class="pt-2">
-
-                        <button
-                            onclick="openOrderModal('General')"
-                            class="px-5 py-2.5 rounded-full bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold transition-colors"
-                        >
-                            Place An Order Now
-                        </button>
-
+                        <button onclick="openOrderModal('General')" class="px-5 py-2.5 rounded-full bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold transition-colors">Place An Order Now</button>
                     </div>
-
                 </div>
-
             </div>
 
-
-            <div
-                class="pt-8 border-t border-stone-800 text-center text-xs text-stone-500"
-            >
-
-                <p>
-                    &copy; 2026 Chef Food Restaurant.
-                    All rights reserved.
-                </p>
-
+            <div class="pt-8 border-t border-stone-800 text-center text-xs text-stone-500">
+                <p>&copy; 2026 Chef Food Restaurant. All rights reserved.</p>
             </div>
-
         </div>
-
     </footer>
 
-
-    <!-- =========================================================
-         ORDER MODAL
-    ========================================================== -->
-
-    <div
-        id="order-modal"
-        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-sm"
-    >
-
-        <div
-            class="bg-brand-warmBg w-full max-w-lg rounded-3xl shadow-2xl border border-stone-200 overflow-hidden relative animate-fadeIn"
-        >
-
-
-            <!-- MODAL HEADER -->
-
-            <div
-                class="bg-stone-900 text-white p-6 flex items-center justify-between"
-            >
-
+    <div id="order-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-sm">
+        <div class="bg-brand-warmBg w-full max-w-lg rounded-3xl shadow-2xl border border-stone-200 overflow-hidden relative animate-fadeIn">
+            <div class="bg-stone-900 text-white p-6 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-
-                    <img
-                        data-image="logo"
-                        src=""
-                        alt="Logo"
-                        class="h-10 w-auto rounded-full border border-stone-700"
-                    >
-
+                    <img src="./242833.jpg" alt="Logo" class="h-10 w-auto rounded-full border border-stone-700">
                     <div>
-
-                        <h3
-                            class="font-serif text-lg font-bold"
-                        >
-                            Place Your Meal Order
-                        </h3>
-
-                        <p
-                            class="text-xs text-brand-gold"
-                        >
-                            CHEF FOOD RESTAURANT
-                        </p>
-
+                        <h3 class="font-serif text-lg font-bold">Place Your Meal Order</h3>
+                        <p class="text-xs text-brand-gold">CHEF FOOD RESTAURANT</p>
                     </div>
-
                 </div>
-
-
-                <button
-                    onclick="closeOrderModal()"
-                    class="text-stone-400 hover:text-white p-2 rounded-lg text-lg"
-                >
-
-                    <i class="fa-solid fa-xmark"></i>
-
-                </button>
-
+                <button onclick="closeOrderModal()" class="text-stone-400 hover:text-white p-2 rounded-lg text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-
-            <!-- ORDER FORM -->
-
-            <form
-                id="order-form"
-                onsubmit="handleOrderSubmit(event)"
-                class="p-6 space-y-4"
-            >
-
+            <form id="order-form" onsubmit="handleOrderSubmit(event)" class="p-6 space-y-4">
                 <div>
-
-                    <label
-                        class="block text-xs font-bold uppercase text-stone-700 mb-1"
-                    >
-                        Select Meal Dish
-                    </label>
-
-                    <select
-                        id="dish-select"
-                        class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold"
-                    >
-
-                        <option value="Jollof Rice">
-                            Jollof Rice
-                        </option>
-
-                        <option value="Fried Rice">
-                            Fried Rice
-                        </option>
-
-                        <option value="Fried Chicken">
-                            Fried Chicken
-                        </option>
-
-                        <option value="Custom Combo Pack">
-                            Custom Combo Pack
-                        </option>
-
+                    <label class="block text-xs font-bold uppercase text-stone-700 mb-1">Select Meal Dish</label>
+                    <select id="dish-select" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold">
+                        <option value="Jollof Rice">Jollof Rice</option>
+                        <option value="Fried Rice">Fried Rice</option>
+                        <option value="Fried Chicken">Fried Chicken</option>
+                        <option value="Custom Combo Pack">Custom Combo Pack</option>
                     </select>
-
                 </div>
-
 
                 <div class="grid grid-cols-2 gap-4">
-
                     <div>
-
-                        <label
-                            class="block text-xs font-bold uppercase text-stone-700 mb-1"
-                        >
-                            Portions / Packs
-                        </label>
-
-                        <input
-                            type="number"
-                            id="portion-count"
-                            min="1"
-                            max="50"
-                            value="1"
-                            class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold"
-                        >
-
+                        <label class="block text-xs font-bold uppercase text-stone-700 mb-1">Portions / Packs</label>
+                        <input type="number" id="portion-count" min="1" max="50" value="1" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold">
                     </div>
-
-
                     <div>
-
-                        <label
-                            class="block text-xs font-bold uppercase text-stone-700 mb-1"
-                        >
-                            Lagos Area
-                        </label>
-
-                        <input
-                            type="text"
-                            id="delivery-area"
-                            placeholder="e.g. Ikeja, Yaba, Lekki"
-                            required
-                            class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold"
-                        >
-
+                        <label class="block text-xs font-bold uppercase text-stone-700 mb-1">Lagos Area</label>
+                        <input type="text" id="delivery-area" placeholder="e.g. Ikeja, Yaba, Lekki" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold">
                     </div>
-
                 </div>
-
 
                 <div>
-
-                    <label
-                        class="block text-xs font-bold uppercase text-stone-700 mb-1"
-                    >
-                        Additional Notes / Requests
-                    </label>
-
-                    <textarea
-                        id="order-notes"
-                        rows="2"
-                        placeholder="e.g. Extra fried plantain, spicy, specific delivery time..."
-                        class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold resize-none"
-                    ></textarea>
-
+                    <label class="block text-xs font-bold uppercase text-stone-700 mb-1">Additional Notes / Requests</label>
+                    <textarea id="order-notes" rows="2" placeholder="e.g. Extra fried plantain, spicy, specific delivery time..." class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange bg-white text-sm font-semibold resize-none"></textarea>
                 </div>
 
-
-                <div
-                    class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2"
-                >
-
-                    <i
-                        class="fa-solid fa-circle-info text-brand-orange text-sm mt-0.5"
-                    ></i>
-
-                    <span>
-                        Submitting will open WhatsApp directly with your
-                        pre-filled meal details sent to
-                        <strong>08030425401</strong>.
-                    </span>
-
+                <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2">
+                    <i class="fa-solid fa-circle-info text-brand-orange text-sm mt-0.5"></i>
+                    <span>Submitting will open WhatsApp directly with your pre-filled meal details sent to <strong>08030425401</strong>.</span>
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-lg transition-colors flex items-center justify-center gap-2"
-                >
-
+                <button type="submit" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-lg transition-colors flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
-
-                    <span>
-                        Send Order via WhatsApp
-                    </span>
-
+                    <span>Send Order via WhatsApp</span>
                 </button>
-
             </form>
-
         </div>
-
     </div>
 
-
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
-
     <script>
-
-
-        /* ======================================================
-           LOAD ALL GITHUB IMAGES
-        ====================================================== */
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const imageElements =
-                document.querySelectorAll("[data-image]");
-
-
-            imageElements.forEach(function (image) {
-
-                const imageName =
-                    image.getAttribute("data-image");
-
-                if (IMAGES[imageName]) {
-
-                    image.src = IMAGES[imageName];
-
-                }
-
-            });
-
-        });
-
-
-
         /* ======================================================
            HERO SLIDER
         ====================================================== */
-
         let currentSlide = 0;
-
         const totalSlides = 3;
-
-        const slides = [
-            document.getElementById("slide-0"),
-            document.getElementById("slide-1"),
-            document.getElementById("slide-2")
-        ];
-
-        const dots =
-            document.querySelectorAll(".hero-dot");
-
         let slideTimer;
 
+        function getSlides() {
+            return [
+                document.getElementById('slide-0'),
+                document.getElementById('slide-1'),
+                document.getElementById('slide-2')
+            ];
+        }
 
         function setHeroSlide(index) {
+            const slides = getSlides();
+            const dots = document.querySelectorAll('.hero-dot');
 
-            slides.forEach(function (slide, i) {
-
-                if (i === index) {
-
-                    slide.classList.add("active");
-
-                } else {
-
-                    slide.classList.remove("active");
-
-                }
-
+            slides.forEach((slide, i) => {
+                if (slide) slide.classList.toggle('active', i === index);
             });
 
-
-            dots.forEach(function (dot, i) {
-
+            dots.forEach((dot, i) => {
                 if (i === index) {
-
-                    dot.classList.remove("bg-stone-600");
-
-                    dot.classList.add(
-                        "bg-brand-orange",
-                        "w-8"
-                    );
-
+                    dot.classList.remove('bg-stone-600', 'w-3');
+                    dot.classList.add('bg-brand-orange', 'w-8');
                 } else {
-
-                    dot.classList.remove(
-                        "bg-brand-orange",
-                        "w-8"
-                    );
-
-                    dot.classList.add(
-                        "bg-stone-600",
-                        "w-3"
-                    );
-
+                    dot.classList.remove('bg-brand-orange', 'w-8');
+                    dot.classList.add('bg-stone-600', 'w-3');
                 }
-
             });
-
 
             currentSlide = index;
-
             resetSlideTimer();
-
         }
-
 
         function nextHeroSlide() {
-
-            const nextIndex =
-                (currentSlide + 1) % totalSlides;
-
-            setHeroSlide(nextIndex);
-
+            setHeroSlide((currentSlide + 1) % totalSlides);
         }
-
 
         function resetSlideTimer() {
-
             clearInterval(slideTimer);
-
-            slideTimer =
-                setInterval(nextHeroSlide, 3800);
-
+            slideTimer = setInterval(nextHeroSlide, 3800);
         }
-
-
 
         /* ======================================================
            MOBILE MENU
         ====================================================== */
-
-        const mobileMenuBtn =
-            document.getElementById("mobile-menu-btn");
-
-        const mobileMenu =
-            document.getElementById("mobile-menu");
-
-        const menuIconOpen =
-            document.getElementById("menu-icon-open");
-
-        const menuIconClose =
-            document.getElementById("menu-icon-close");
-
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
 
         function toggleMobileMenu() {
-
-            const isHidden =
-                mobileMenu.classList.contains("hidden");
-
+            const isHidden = mobileMenu.classList.contains('hidden');
 
             if (isHidden) {
-
-                mobileMenu.classList.remove("hidden");
-
-                menuIconOpen.classList.add("hidden");
-
-                menuIconClose.classList.remove("hidden");
-
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
             } else {
-
-                mobileMenu.classList.add("hidden");
-
-                menuIconOpen.classList.remove("hidden");
-
-                menuIconClose.classList.add("hidden");
-
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
             }
-
         }
 
-
-        mobileMenuBtn.addEventListener(
-            "click",
-            toggleMobileMenu
-        );
-
-
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
         /* ======================================================
            ORDER MODAL
         ====================================================== */
-
-        const orderModal =
-            document.getElementById("order-modal");
-
-        const dishSelect =
-            document.getElementById("dish-select");
-
+        const orderModal = document.getElementById('order-modal');
+        const dishSelect = document.getElementById('dish-select');
 
         function openOrderModal(preferredDish) {
-
-            if (
-                preferredDish &&
-                preferredDish !== "General"
-            ) {
-
+            if (preferredDish && preferredDish !== 'General') {
                 dishSelect.value = preferredDish;
-
             }
-
-            orderModal.classList.remove("hidden");
-
+            orderModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
         }
-
 
         function closeOrderModal() {
-
-            orderModal.classList.add("hidden");
-
+            orderModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
         }
 
+        orderModal.addEventListener('click', function (event) {
+            if (event.target === orderModal) closeOrderModal();
+        });
 
-        orderModal.addEventListener(
-            "click",
-            function (event) {
-
-                if (event.target === orderModal) {
-
-                    closeOrderModal();
-
-                }
-
-            }
-        );
-
-
-        /* ESCAPE KEY CLOSES MODAL */
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Escape") {
-
-                    closeOrderModal();
-
-                }
-
-            }
-        );
-
-
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') closeOrderModal();
+        });
 
         /* ======================================================
            WHATSAPP ORDER
         ====================================================== */
-
         function handleOrderSubmit(event) {
-
             event.preventDefault();
 
+            const dish = document.getElementById('dish-select').value;
+            const portions = document.getElementById('portion-count').value;
+            const area = document.getElementById('delivery-area').value.trim();
+            const notes = document.getElementById('order-notes').value.trim();
 
-            const dish =
-                document.getElementById("dish-select").value;
+            let message = 'Hello Chef Food Restaurant! I would like to place an order:\n\n';
+            message += 'Dish: ' + dish + '\n';
+            message += 'Portions: ' + portions + '\n';
+            message += 'Delivery Location: ' + area + ', Lagos\n';
 
-            const portions =
-                document.getElementById("portion-count").value;
-
-            const area =
-                document.getElementById("delivery-area").value;
-
-            const notes =
-                document.getElementById("order-notes").value;
-
-
-            let message =
-                "Hello Chef Food Restaurant! I would like to place an order:\n\n";
-
-            message +=
-                "Dish: " + dish + "\n";
-
-            message +=
-                "Portions: " + portions + "\n";
-
-            message +=
-                "Delivery Location: " + area + ", Lagos\n";
-
-
-            if (notes.trim() !== "") {
-
-                message +=
-                    "Special Notes: " + notes + "\n";
-
+            if (notes !== '') {
+                message += 'Special Notes: ' + notes + '\n';
             }
 
+            message += '\nPlease confirm current pricing and estimated delivery time. Thank you!';
 
-            message +=
-                "\nPlease confirm current pricing and estimated delivery time. Thank you!";
-
-
-            const whatsappUrl =
-                "https://wa.me/2348030425401?text=" +
-                encodeURIComponent(message);
-
-
-            window.open(
-                whatsappUrl,
-                "_blank"
-            );
-
-
+            const whatsappUrl = 'https://wa.me/2348030425401?text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
             closeOrderModal();
-
         }
-
-
 
         /* ======================================================
            SCROLL REVEAL
         ====================================================== */
+        document.addEventListener('DOMContentLoaded', function () {
+            const reveals = document.querySelectorAll('.reveal');
 
-        const observerOptions = {
-
-            threshold: 0.1,
-
-            rootMargin: "0px 0px -50px 0px"
-
-        };
-
-
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
-
-                    entries.forEach(
-                        function (entry) {
-
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
-
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
                             }
-
-                        }
-                    );
-
-                },
-                observerOptions
-            );
-
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-                const reveals =
-                    document.querySelectorAll(".reveal");
-
-
-                reveals.forEach(
-                    function (element) {
-
-                        observer.observe(element);
-
-                    }
+                        });
+                    },
+                    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
                 );
 
-
-                /* START HERO */
-
-                setHeroSlide(0);
-
+                reveals.forEach(function (element) {
+                    observer.observe(element);
+                });
+            } else {
+                reveals.forEach(function (element) {
+                    element.classList.add('visible');
+                });
             }
-        );
 
-
+            setHeroSlide(0);
+        });
     </script>
 
 </body>
